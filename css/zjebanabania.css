@@ -1,0 +1,39 @@
+img {
+	width: 100%;
+}
+body{
+	background-image: url("./../bg.jpg");
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+}
+
+.demo {
+		border:1px double #000000;
+		border-collapse:collapse;
+		border-spacing:2px;
+		padding:5px;
+		width: 100%;
+
+	}
+	.demo caption {
+		caption-side:top;
+		text-align:center;
+	}
+	.demo th {
+		border:1px double #000000;
+		padding:5px;
+		background:#C11735;
+	}
+	.demo td {
+		border:1px double #000000;
+		text-align:left;
+		padding:5px;
+		background:#FFFFFF;
+	}
+div#playerList {
+	background-color: #eee;
+}
+span#numPlayers {
+	display:none;
+}
