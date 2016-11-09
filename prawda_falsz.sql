@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Lis 2016, 15:29
--- Wersja serwera: 10.1.9-MariaDB
--- Wersja PHP: 5.5.30
+-- Czas generowania: 09 Lis 2016, 13:00
+-- Wersja serwera: 5.5.42
+-- Wersja PHP: 5.5.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,20 +26,20 @@ SET time_zone = "+00:00";
 -- Struktura tabeli dla tabeli `challenges`
 --
 
-CREATE TABLE `challenges` (
+CREATE TABLE IF NOT EXISTS `challenges` (
   `ID_CHALLENGE` int(255) NOT NULL,
-  `CONTENT` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
+  `CONTENT` text COLLATE utf8_polish_ci NOT NULL,
   `DIFFICULTY` int(11) NOT NULL,
   `GENDER` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `challenges`
 --
 
 INSERT INTO `challenges` (`ID_CHALLENGE`, `CONTENT`, `DIFFICULTY`, `GENDER`) VALUES
-(1, 'POLIŻ DAMIANA', 0, 0),
-(2, 'ZATAŃCZ NA ŁAWCE', 0, 0),
+(1, 'Poliż chłopaka', 0, 0),
+(2, 'Zatańcz na ławce', 0, 0),
 (3, 'Zrób 10 pompek', 0, 1),
 (4, 'Zrób jaskółkę przez przynajmniej 5 sekund', 0, 0),
 (5, 'Zrób jaskółkę przez przynajmniej 5 sekund', 0, 1),
@@ -78,20 +78,20 @@ INSERT INTO `challenges` (`ID_CHALLENGE`, `CONTENT`, `DIFFICULTY`, `GENDER`) VAL
 -- Struktura tabeli dla tabeli `difficulty`
 --
 
-CREATE TABLE `difficulty` (
+CREATE TABLE IF NOT EXISTS `difficulty` (
   `id_difficult` int(11) NOT NULL,
   `difficult_number` int(11) NOT NULL,
-  `difficult` text NOT NULL,
-  `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `difficult` text COLLATE utf8_polish_ci NOT NULL,
+  `description` text COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `difficulty`
 --
 
 INSERT INTO `difficulty` (`id_difficult`, `difficult_number`, `difficult`, `description`) VALUES
-(1, 0, 'EASY', 'Latwe wyzwanie'),
-(2, 1, 'MEDIUM', 'Srednie wyzwanie'),
+(1, 0, 'EASY', 'Łatwe wyzwanie'),
+(2, 1, 'MEDIUM', 'Średnie wyzwanie'),
 (3, 2, 'HARD', 'Trudne wyzwanie');
 
 -- --------------------------------------------------------
@@ -100,12 +100,12 @@ INSERT INTO `difficulty` (`id_difficult`, `difficult_number`, `difficult`, `desc
 -- Struktura tabeli dla tabeli `gender`
 --
 
-CREATE TABLE `gender` (
+CREATE TABLE IF NOT EXISTS `gender` (
   `id_gender` int(11) NOT NULL,
   `gender_number` int(11) NOT NULL,
-  `gender` varchar(20) NOT NULL,
-  `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `gender` varchar(20) COLLATE utf8_polish_ci NOT NULL,
+  `description` text COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `gender`
@@ -113,7 +113,7 @@ CREATE TABLE `gender` (
 
 INSERT INTO `gender` (`id_gender`, `gender_number`, `gender`, `description`) VALUES
 (1, 0, 'FEMALE', 'Kobieta'),
-(2, 1, 'MALE', 'Mezczyzna');
+(2, 1, 'MALE', 'Mężczyzna');
 
 -- --------------------------------------------------------
 
@@ -121,21 +121,21 @@ INSERT INTO `gender` (`id_gender`, `gender_number`, `gender`, `description`) VAL
 -- Struktura tabeli dla tabeli `questions`
 --
 
-CREATE TABLE `questions` (
+CREATE TABLE IF NOT EXISTS `questions` (
   `ID_QUESTION` int(255) NOT NULL,
-  `CONTENT` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
+  `CONTENT` text COLLATE utf8_polish_ci NOT NULL,
   `DIFFICULTY` int(11) NOT NULL,
   `GENDER` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Zrzut danych tabeli `questions`
 --
 
 INSERT INTO `questions` (`ID_QUESTION`, `CONTENT`, `DIFFICULTY`, `GENDER`) VALUES
-(1, 'LUBISZ PSY?', 0, 1),
-(2, 'ILE PARTNERÓW MIAŁAŚ?', 1, 0),
-(3, 'ILE SPĘDZASZ CZASU NA GRANIU?', 0, 1),
+(1, 'Lubisz psy?', 0, 1),
+(2, 'Ile miałaś partnerów?', 1, 0),
+(3, 'Ile czasu spędzasz na graniu?', 0, 1),
 (4, 'Czy rzygałeś po alkoholu?', 0, 1),
 (5, 'Czy rzygałaś po alkoholu?', 0, 0),
 (6, 'Czy wylądowałeś kiedyś z kimś w łóżku po alkoholu?', 2, 1),
@@ -221,22 +221,22 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT dla tabeli `challenges`
 --
 ALTER TABLE `challenges`
-  MODIFY `ID_CHALLENGE` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID_CHALLENGE` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT dla tabeli `difficulty`
 --
 ALTER TABLE `difficulty`
-  MODIFY `id_difficult` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_difficult` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT dla tabeli `gender`
 --
 ALTER TABLE `gender`
-  MODIFY `id_gender` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_gender` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT dla tabeli `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `ID_QUESTION` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `ID_QUESTION` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
