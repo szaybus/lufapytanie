@@ -3,9 +3,11 @@
 class Game
 {
     public $db;
+    public $gameActive = false;
     //public $question;
     //public $challenge;
     private $players = Array();
+
 
     function __construct() {
         $this->db = new Mysqli('localhost','root','mysqlpasswd','gra');
@@ -18,6 +20,7 @@ class Game
     {
         array_push($this->players, new Player($n, $l, $g));
     }
+
 	function showPlayers() {
 		$numPlayers=0;
 		echo '<table border="1">';
