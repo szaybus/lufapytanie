@@ -1,5 +1,6 @@
 <?php
 include 'Game.class.php';
+include 'Player.class.php';
 session_start();
 $game = unserialize($_SESSION['game']);
 ?>
@@ -36,7 +37,15 @@ $game = unserialize($_SESSION['game']);
       </label>
       </div>
     </div>
-    <button class="btn btn-default btn-lg btn-block" onclick="">Dodaj</button>
   </form>
-  <?php $game->showPlayers(); ?>
+  <button class="btn btn-default btn-lg btn-block" onclick="addPlayer()">Dodaj</button>
+  <?php
+  if(isset($_REQUEST['imie'])) {
+    $game->addPlayer($_REQUEST['imie'],$_REQUEST['poziom'],$_REQUEST['plec']);
+  }
+  $game->showPlayers();
+  ?>
+  <?php $_SESSION['game'] = serialize($game); ?>
+  <button class="btn btn-default btn-lg btn-block" onclick="startGame()">Rozpocznij gre</button>,
+  
 </div>

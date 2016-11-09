@@ -20,17 +20,21 @@ class Game
     {
         array_push($this->players, new Player($n, $l, $g));
     }
+    function start()
+    {
+      $this->gameActive = true;
+    }
 
 	function showPlayers() {
-		$numPlayers=0;
-		echo '<table border="1">';
+//$numPlayers=0;
+		echo '<p> Gracze: ';
         foreach($this->players as $player) {
 			$name = $player->getName();
-			$numPlayers++;
-			echo '<tr><td>'.$name.'</td></tr>';
+			//$numPlayers++;
+			echo '<span>'.$name.', <span>';
 		}
-		echo '</table>';
-		echo  '<span id="numPlayers">'.$numPlayers.'</span>';
+		echo '</p>';
+		//echo  '<span id="numPlayers">Liczba graczy'.$numPlayers.'</span>';
 	}
     function getQuestion($playerId)
     {
@@ -45,9 +49,15 @@ class Game
 		//echo "pytanie dla id=$playerId";
         //return $row[0];
         $output = Array();
-        $output[0] = $this->players[$playerId]->getName().", pytanie dla ciebie...";
-        $output[1] = $row[0];
-        return $output;
+        while($row = mysqli_fetch_row($result)) {
+
+          $output[] = Array($this->players[$playerId]->getName().", pytanie dla ciebie...",$row[0]);
+
+
+        }
+        $numer = rand(0, count($output)-1);
+        //print_r($output);
+        return $output[$numer];
     }
     function getChallenge($playerId)
     {
@@ -59,11 +69,16 @@ class Game
 		//print_r($this->players[0]);
 		//echo $q;
         $result=$this->db->query($q);
-        $row = mysqli_fetch_row($result);
         $output = Array();
-        $output[0] = $this->players[$playerId]->getName().", zadanie dla ciebie...";
-        $output[1] = $row[0];
-        return $output;
+        while($row = mysqli_fetch_row($result)) {
+
+          $output[] = Array($this->players[$playerId]->getName().", zadanie dla ciebie...",$row[0]);
+
+
+        }
+        $numer = rand(0, count($output)-1);
+        //print_r($output);
+        return $output[$numer];
     }
 
 }

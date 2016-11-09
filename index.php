@@ -1,5 +1,6 @@
 <?php
 include 'Game.class.php';
+session_start();
 if(isset($_SESSION['game'])) {
   //gra w toku
   $game = unserialize($_SESSION['game']);
@@ -38,8 +39,15 @@ else {
       <a href="#"><img src="logo2.png"></a>
     </div>
   </div>
+
   <?php if(isset($game) && $game->gameActive) : ?>
-      html
+    <div class="row" id="pageMain">
+      <div class="col-xs-4 col-xs-offset-4">
+        <button class="btn btn-default btn-lg btn-block" onclick="loadIntoPageMain('question.php?pid=1')">Pytanie</button>
+        <button class="btn btn-default btn-lg btn-block" onclick="loadIntoPageMain('challenge.php?pid=1')">Zadanie</button>
+        <button class="btn btn-default btn-lg btn-block" onclick="loadIntoPageMain('killGame.php')">Koniec gry</button>
+      </div>
+    </div>
   <?php else : ?>
     <div class="row" id="pageMain">
       <div class="col-xs-4 col-xs-offset-4">
@@ -54,6 +62,7 @@ else {
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/scripts.js"></script>
+  <?php print_r($game);?>
 </body>
 </html>
 <?php $_SESSION['game'] = serialize($game); ?>

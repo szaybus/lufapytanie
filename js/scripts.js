@@ -2,20 +2,20 @@ function loadIntoPageMain(file) {
   //var target = document.getElementById('pageMain');
   $("#pageMain").load(file);
 }
-
-
-function dodajgracz ()
+function addPlayer ()
 {
-imie = document.getElementById('nazwagracza').value;
-if(document.getElementById('plecM').checked) {plec = 1;}
-else {plec = 0; }
-if(document.getElementById('latwy').checked) {poziom = 0;}
-else {poziom = 1; }
-if (document.getElementById('latwy').checked) {poziom = 0;}
-else if (document.getElementById('sredni').checked) {poziom = 1;}
-if (document.getElementById('sredni').checked) {poziom = 1;}
-else if (document.getElementById('trudny').checked) {poziom = 2;}
-$('#tabelagraczy').load('addPlayer.php?imie='+imie+'&plec='+plec+'&poziom='+poziom);
+imie = document.getElementById('name').value;
+if(document.getElementById('genderF').checked) {plec = 0;}
+if(document.getElementById('genderM').checked) {plec = 1;}
+if(document.getElementById('level0').checked) {poziom = 0;}
+if(document.getElementById('level1').checked) {poziom = 1;}
+if(document.getElementById('level2').checked) {poziom = 2;}
+url = 'newGame.php?imie='+imie+'&plec='+plec+'&poziom='+poziom;
+//alert(url);
+$('#pageMain').load(url);
+}
+function startGame() {
+  $('#pageMain').load('mainGame.php');
 }
 
 function showPlayerList() {
